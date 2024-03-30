@@ -3,6 +3,7 @@
 you will need a .csv file containing your repos with this format:
 
 "alias", "path"
+
 "repo" , "~/path/repo"
 
 
@@ -11,9 +12,7 @@ you will need a .csv file containing your repos with this format:
 Build the proyect and set the executable to your path
 
 ```bash
-
 cargo run --release
-
 
 ```
 
@@ -30,10 +29,13 @@ Add a new repository to the .csv file containing your repos
 the .csv file should look like this: 
 
 "alias", "path"
+
 "golang" , "C:\User\user\desktop\golang-proyect"
 
-## Powershell 
+## Powershell set-repo cli 
 
 Add this [code](./powershell/repos.ps1) to your $PROFILE
+
+The powershell cli should have more validations and error handling but it is not rust
 
 
