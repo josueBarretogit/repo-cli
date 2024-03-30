@@ -1,7 +1,7 @@
 use core::panic;
 use std::error::Error;
+use std::process;
 
-use dotenvy::dotenv;
 use clap::Parser;
 
 use std::fs::OpenOptions;
@@ -18,19 +18,18 @@ struct CliParameters {
 
 fn main() -> Result<(), Box<dyn Error>>{
 
-
     let parameters = CliParameters::parse();
 
-    dotenv().unwrap_or_else(|err| panic!("there was no .env file : {err}"));
 
-    let path_to_repos = dotenvy::var("PATH_REPOS").unwrap_or_else(|err| panic!("Could not find env variable: \n {err}"));
+    let path_to_repos = std::env::var("PATH_REPOS").unwrap_or_else(|err| panic!("Could not find env variable: \n {err}"));
 
     
-    let result = update_repos(parameters, path_to_repos).unwrap_or_else(|err| panic!("an error when updating repos, details: \n{err}"));
+    let result = update_repos(parameters, path_to_repos).unwrap_or_else(|err| panic!("An error ocurred when updating repos, details: \n{err}"));
 
     println!("{result}");
 
-    Ok(())
+    process::exit(1);
+
 }
 
 
@@ -48,10 +47,11 @@ fn update_repos(params : CliParameters, path_to_repos : String) -> Result<String
             if let Err(e) = write!(file_handler, " \"{}\", \"{}\" \n", params.alias, path_to_file) {
                 return  Err(e.into());
             };
+            return Ok("Repos where successfully updated".to_string())
         },
-        Err(e) => return Err(e.into())
+        Err(e) => {
+            eprintln!("Could not open file to repos, check the path to that file");
+            return Err(e.into())
+        }
     };
-
-    Ok("update repos".to_string())
-
 }
