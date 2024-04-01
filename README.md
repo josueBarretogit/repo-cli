@@ -50,4 +50,9 @@ Add this [code](./powershell/repos.ps1) to your $PROFILE
 
 The powershell cli should have more validations and error handling but it is not rust
 
+## Bash set-repo cli 
+
+Include the files in the directory `bash` in your ~/.bashrc
+
+
 

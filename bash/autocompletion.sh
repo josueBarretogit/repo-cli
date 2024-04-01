@@ -11,4 +11,4 @@ COMPREPLY=( $( compgen -W "${repos[*]}" -- $cur ) )
 
 }
 
-complete -o default -o nospace -F _setRepoAutocompletion  set-repo
+complete -o default -o nospace -F _setRepoAutocompletion  repo
