@@ -1,5 +1,17 @@
 # Getting started
 
+Set this enviroment variable: 
+
+```pwsh
+$env:PATH_REPOS="path/to/.csvfile"
+```
+
+
+```bash
+export PATH_REPOS="path/to/.csvfile"
+```
+
+
 you will need a .csv file containing your repos with this format:
 
 "alias", "path"
